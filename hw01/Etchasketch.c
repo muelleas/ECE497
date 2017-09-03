@@ -41,7 +41,7 @@ int main()
 void reset(char array[size+1][size+1]){
   for (int i=0; i<size+1; i++) {    /*sets the whole array to be 'x'*/
     for( int j=0; j<size+1; j++) {
-      array[i][j] = 'x';
+      array[i][j] = ' ';
     }
   }
   for(int i=0; i<size; i++) {       /*puts the numbers on the sides of the array*/
