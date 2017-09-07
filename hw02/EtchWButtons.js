@@ -48,38 +48,6 @@ function reset() {
   printArray();
 }
 
-function up() {
-  if (xPos > 1){
-  	xPos--;
-  }
-  array[xPos][yPos] = 'o';
-  printArray();
-}
-
-function down() {
-  if (xPos < size) {
-  	xPos++;
-  }
-  array[xPos][yPos] = 'o';
-  printArray();
-}
-
-function left() {
-  if (yPos > 1){
-  	yPos--;
-  }
-  array[xPos][yPos] = 'o';
-  printArray();
-}
-
-function right() {
-  if (yPos < size) {
-  	yPos++;
-  }
-  array[xPos][yPos] = 'o';
-  printArray();
-}
-
 function printArray() {
   for (i=0; i<size+1; i++){
     var string = array[i].join("");
@@ -91,7 +59,9 @@ function printArray() {
 function toggleB0(x) {   //left
   setTimeout(function(){ // debounces the button
     if (x.value == 0 && prev[0] == 1) { //checks for falling edge
-      left();
+      if (yPos > 1) yPos--;
+      array[xPos][yPos] = 'o';
+      printArray();
     }
   prev[0] = x.value;  // updates the previous value
   }, 25); 
@@ -100,7 +70,9 @@ function toggleB0(x) {   //left
 function toggleB1(x) {   //up
   setTimeout(function(){
     if (x.value == 0 && prev[1] == 1) {
-      up();
+      if (xPos > 1) xPos--;
+      array[xPos][yPos] = 'o';
+      printArray();
     }
   prev[1] = x.value;
   }, 25); 
@@ -109,7 +81,9 @@ function toggleB1(x) {   //up
 function toggleB2(x) {    //right
   setTimeout(function(){
     if (x.value == 0 && prev[2] == 1) {
-      right();
+      if (yPos < size) yPos++;
+      array[xPos][yPos] = 'o';
+      printArray();
     }
   prev[2] = x.value;
   }, 25); 
@@ -118,7 +92,9 @@ function toggleB2(x) {    //right
 function toggleB3(x) {  //down
   setTimeout(function(){
     if (x.value == 0 && prev[3] == 1) {
-      down();
+      if (xPos < size) xPos++;
+      array[xPos][yPos] = 'o';
+      printArray();
     }
   prev[3]= x.value;
   }, 25); 
