@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 var b = require('bonescript');
 
-var led = ["GP1_5", "GP1_6", "GP1_5", "GP1_6"];
+var led = ["GP1_3", "GP1_4", "GP1_5", "GP1_6"];
 var state = [0, 0, 0 ,0];
 var prev = [1, 1, 1, 1];
 var button = ["GP0_3", "GP0_4", "GP0_5", "GP0_6"];
@@ -22,8 +22,8 @@ b.attachInterrupt(button[1], toggleB1, b.CHANGE);
 //b.attachInterrupt(but[2], toggle, b.CHANGE);
 //b.attachInterrupt(but[3], toggle, b.CHANGE);
 
-b.digitalWrite(led[0], state[0]);
-b.digitalWrite(led[1], state[1]);
+b.digitalWrite(led[0], 0);
+b.digitalWrite(led[1], 0);
 //b.digitalWrite(led[2], state[2]);
 //b.digitalWrite(led[3], state[3]);
 

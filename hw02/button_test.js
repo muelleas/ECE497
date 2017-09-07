@@ -1,8 +1,8 @@
 #!/usr/bin/env node
 var b = require('bonescript');
 
-var button = "GP0_3";
-var LED = "GP0_5";
+var button = "GP0_4";
+var LED = "GP1_3";
 
 b.pinMode(button, b.INPUT);
 b.pinMode(LED, b.OUTPUT);
