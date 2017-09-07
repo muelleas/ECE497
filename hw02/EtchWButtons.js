@@ -23,7 +23,7 @@ b.attachInterrupt(button[0], toggleB0, b.CHANGE);  //Could potetally be changest
 b.attachInterrupt(button[1], toggleB1, b.CHANGE);
 b.attachInterrupt(button[2], toggleB2, b.CHANGE);
 b.attachInterrupt(button[3], toggleB3, b.CHANGE);
-b.attachInterrupt(rbutton, reset, b.CHANGE);
+b.attachInterrupt(rbutton, reset, b.FALLING);
 
 // set up the etch board
 var size = 8;
