@@ -45,6 +45,38 @@ function reset() {
   }
 }
 
+function up() {
+  if (xPos > 1){
+  	xPos--;
+  }
+  array[xPos][yPos] = 'o';
+  printArray();
+}
+
+function down() {
+  if (xPos < size) {
+  	xPos++;
+  }
+  array[xPos][yPos] = 'o';
+  printArray();
+}
+
+function left() {
+  if (yPos > 1){
+  	yPos--;
+  }
+  array[xPos][yPos] = 'o';
+  printArray();
+}
+
+function right() {
+  if (yPos < size) {
+  	yPos++;
+  }
+  array[xPos][yPos] = 'o';
+  printArray();
+}
+
 function printArray() {
   for (i=0; i<size+1; i++){
     var string = array[i].join("");
@@ -58,7 +90,7 @@ function toggleB0(x) {   //left
   setTimeout(function(){ // debounces the button
     if (x.value == 0 && prev[0] == 1) { //checks for falling edge
       (state[0] == 0) ? state[0] = 1 : state[0] = 0;  //toggles the state
-      
+      left();
     }
   prev[0] = x.value;  // updates the previous value
   }, 25); 
@@ -68,7 +100,7 @@ function toggleB1(x) {   //up
   setTimeout(function(){
     if (x.value == 0 && prev[1] == 1) {
       (state[1] == 0) ? state[1] = 1 : state[1] = 0;
-      
+      up();
     }
   prev[1] = x.value;
   }, 25); 
@@ -78,7 +110,7 @@ function toggleB2(x) {    //right
   setTimeout(function(){
     if (x.value == 0 && prev[2] == 1) {
       (state[2] == 0) ? state[2] = 1 : state[2] = 0;
-      
+      right();
     }
   prev[2] = x.value;
   }, 25); 
@@ -88,7 +120,7 @@ function toggleB3(x) {  //down
   setTimeout(function(){
     if (x.value == 0 && prev[3] == 1) {
       (state[3] == 0) ? state[3] = 1 : state[3] = 0;
-      
+      down();
     }
   prev[3]= x.value;
   }, 25); 
