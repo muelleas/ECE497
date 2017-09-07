@@ -13,8 +13,16 @@ b.attachInterrupt(button[1], toggleB1, b.CHANGE);
 b.attachInterrupt(button[2], toggleB2, b.CHANGE);
 b.attachInterrupt(button[3], toggleB3, b.CHANGE);
 
-var size = 9;
-var array[size+1][size+1]
+var size = 8;
+var array = [[' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
+             [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
+             [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
+             [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
+             [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
+             [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
+             [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
+             [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
+             [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ']]
 
 reset();
 
