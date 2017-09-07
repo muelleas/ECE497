@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 
+var b = require('bonescript');
 var button = ["GP0_3", "GP0_4", "GP0_5", "GP0_6"];
 
 b.pinMode(button[0], b.INPUT);
@@ -14,6 +15,8 @@ b.attachInterrupt(button[2], toggleB2, b.CHANGE);
 b.attachInterrupt(button[3], toggleB3, b.CHANGE);
 
 var size = 8;
+var xPos = 1;
+var yPos = 1;
 var array = [[' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
              [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
              [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
@@ -24,13 +27,17 @@ var array = [[' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
              [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
              [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ']]
 
+
 reset();
+array[1][1] = 'o';
+printArray();
+
 
 function reset() {
   for (i=0; i<size+1; i++){
-  	for (j=0; j<size+1; j++){
-  	  array[i][j] = ' ';
-  	}
+    for (j=0; j<size+1; j++){
+      array[i][j] = ' ';
+    }
   }
   for (i=0; i<size; i++){
   	array[0][i+1] = i;
@@ -38,6 +45,13 @@ function reset() {
   }
 }
 
+function printArray() {
+  for (i=0; i<size+1; i++){
+    var string = array[i].join("");
+    console.log(string);
+  }
+  console.log(array[0]);
+}
 
 //The interups to be used by the buttons
 function toggleB0(x) {   //left
