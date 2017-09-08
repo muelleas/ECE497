@@ -41,7 +41,6 @@ b.digitalWrite(led[3], 0);
 
 //The interup to be used by the buttons
 function toggle(x) {
-  console.log(x.pin.name);
   var num = remap.indexOf(x.pin.name);
   setTimeout(function(){ // debounces the button
     if (x.value == 0 && prev[num] == 1) { //checks for falling edge

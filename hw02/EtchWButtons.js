@@ -8,6 +8,7 @@ var b = require('bonescript');
 
 //set up need button variables
 var button = ["GP0_3", "GP0_4", "GP0_5", "GP0_6"];
+var remap = ["GPIO1_25", "GPIO1_17", "GPIO3_20", "SPI1_CS0"];
 var rbutton = "PAUSE";
 var prev = [1,1,1,1];
 
@@ -19,10 +20,10 @@ b.pinMode(button[3], b.INPUT);
 b.pinMode(rbutton, b.INPUT);
 
 //Attaching interrups
-b.attachInterrupt(button[0], toggleB0, b.CHANGE);  //Could potetally be changesto falling edge but that would mess with my debounce method
-b.attachInterrupt(button[1], toggleB1, b.CHANGE);
-b.attachInterrupt(button[2], toggleB2, b.CHANGE);
-b.attachInterrupt(button[3], toggleB3, b.CHANGE);
+b.attachInterrupt(button[0], toggle, b.CHANGE);  //Could potetally be changesto falling edge but that would mess with my debounce method
+b.attachInterrupt(button[1], toggle, b.CHANGE);
+b.attachInterrupt(button[2], toggle, b.CHANGE);
+b.attachInterrupt(button[3], toggle, b.CHANGE);
 b.attachInterrupt(rbutton, reset, b.FALLING);
 
 // set up the etch board
@@ -37,7 +38,7 @@ var array = [[' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
              [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
              [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
              [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
-             [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ']]
+             [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ']];
 
 //init the board
 reset();
@@ -64,47 +65,29 @@ function printArray() {
   }
 }
 
-//The interups to be used by the buttons
-function toggleB0(x) {   //left
+//The interup to be used by the buttons
+function toggle(x) {   
   setTimeout(function(){ // debounces the button
-    if (x.value == 0 && prev[0] == 1) { //checks for falling edge
+    var num = remap.indexOf(x.pin.name);
+    var print = 0;
+    if (num == 0 && x.value == 0 && prev[0] == 1) { //checks for falling edge
       if (yPos > 1) yPos--;       //check bounds
-      array[xPos][yPos] = 'o';    //place curser
-      printArray();               //print array
+      print = 1;
     }
-  prev[0] = x.value;  // updates the previous value
-  }, 25); 
-}
-
-function toggleB1(x) {   //up
-  setTimeout(function(){
-    if (x.value == 0 && prev[1] == 1) {
+    else if (num == 1 && x.value == 0 && prev[1] == 1) {
       if (xPos > 1) xPos--;       //check bounds
-      array[xPos][yPos] = 'o';    //place curser
-      printArray();               //print array
+      print = 1;
     }
-  prev[1] = x.value;
-  }, 25); 
-}
-
-function toggleB2(x) {    //right
-  setTimeout(function(){
-    if (x.value == 0 && prev[2] == 1) {
+    else if (num == 2 && x.value == 0 && prev[2] == 1) {
       if (yPos < size) yPos++;    //check bounds
-      array[xPos][yPos] = 'o';    //place curser
-      printArray();               //print array
+      print = 1;
     }
-  prev[2] = x.value;
-  }, 25); 
-}
-
-function toggleB3(x) {  //down
-  setTimeout(function(){
-    if (x.value == 0 && prev[3] == 1) {
+    else if (num == 3 && x.value == 0 && prev[3] == 1) {
       if (xPos < size) xPos++;    //check bounds
-      array[xPos][yPos] = 'o';    //place curser
-      printArray();               //print array
+      print = 1;
     }
-  prev[3]= x.value;
+    prev[num] = x.value;  // updates the previous value
+    array[xPos][yPos] = 'o';    //place curser
+    if (print) printArray();               //print array
   }, 25); 
 }
