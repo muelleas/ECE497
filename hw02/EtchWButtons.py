@@ -58,6 +58,7 @@ def updateBoard(channel):
             yPos += -1
     array[xPos][yPos] = 'o'
     printArray()
+    time.sleep(.05)
 
 GPIO.add_event_detect(button[0], GPIO.FALLING, callback=updateBoard)
 GPIO.add_event_detect(button[1], GPIO.FALLING, callback=updateBoard)
