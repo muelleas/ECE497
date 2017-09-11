@@ -10,6 +10,33 @@ GPIO.setup(button[1], GPIO.IN)
 GPIO.setup(button[2], GPIO.IN)
 GPIO.setup(button[3], GPIO.IN)
 
+size = 8
+xPos = 1
+yPos = 1
+array = [[' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
+         [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
+         [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
+         [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
+         [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
+         [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
+         [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
+         [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
+         [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ']];
+
+def reset():
+    for i in range(0, size+1):
+        for j in range(0, size+1):
+            array[i][j]
+    for i in range(0, size):
+        array[0][i+1] = i
+        arrat[i+1][0] = i
+    array[xPos][yPos] = 'o'
+    printArray();
+
+def printArray():
+    for i in range(0, size):
+        print ''.join(array[i])
+
 def updateBoard(channel):
     print("channel")
 
