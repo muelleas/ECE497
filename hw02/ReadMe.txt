@@ -1,6 +1,6 @@
 HW02
 
-NOTE: I have done this homework in both js and python. I first did it in python and then later python to make the next homework easier. Either file is useable and the names are the same with only the extentions different
+NOTE: I have done this homework in both js and python. I first did it in js and then later python to make the next homework easier. Either file is useable and the names are the same with only the extentions different
 
 Buttons and LEDs
 This part of the homework is present in the file called fourbuttons.js
