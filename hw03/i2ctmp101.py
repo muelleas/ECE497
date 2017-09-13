@@ -33,6 +33,8 @@ GPIO.add_event_detect(alert1, GPIO.FALLING, callback=tempPrint)
 try:
     print("running")
     while True:
+        #temp = bus.read_byte_data(address0,0)
+        #print(temp)
         time.sleep(100)
 except KeyboardInterrupt:
     print("cleanup")
