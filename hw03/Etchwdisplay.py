@@ -2,15 +2,15 @@
 # File: EthchWButtons.py
 # Author: Andrew Mueller
 #
-# This file takes input form 4 buttons on GP0 and the PAU button. With these inputs a game of Etch-a-sketch is played in the terminal.
+# This file takes input form 4 buttons on GP0 and the PAU button. With these inputs a game of Etch-a-sketch is played on a 8 by 8led matrix
 #The buttons on GP0 act as directionals and PAU is the reset.
 
 import Adafruit_BBIO.GPIO as GPIO
 import time
 import smbus
-bus = smbus.SMBus(1)
-matrix = 0x70
+bus = smbus.SMBus(1)   # set up the bus
 
+matrix = 0x70	# address of the display
 button = ["GP0_3", "GP0_4", "GP0_5", "GP0_6"]   # the buttons used
 map = {button[0]:'u', button[1]:'r', button[2]: 'd', button[3]:'l'} #map the buttons to their dirrection
 resetButton = "PAUSE"  #the clear button
@@ -22,6 +22,7 @@ GPIO.setup(button[2], GPIO.IN)
 GPIO.setup(button[3], GPIO.IN)
 GPIO.setup(resetButton, GPIO.IN)
 
+#set up the display
 bus.write_byte_data(matrix, 0x21, 0)
 bus.write_byte_data(matrix, 0x81, 0)
 bus.write_byte_data(matrix, 0xe7, 0)
