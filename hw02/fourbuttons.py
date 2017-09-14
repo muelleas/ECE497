@@ -1,4 +1,4 @@
-#!/usr/bin/env python30
+#!/usr/bin/env python3
 # File: fourbuttons.py
 # Author: Andrew Mueller
 #
