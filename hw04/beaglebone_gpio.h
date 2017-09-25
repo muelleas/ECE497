@@ -11,6 +11,10 @@
 #define GPIO1_END_ADDR 0x4804e000
 #define GPIO1_SIZE (GPIO1_END_ADDR - GPIO1_START_ADDR)
 
+#define GPIO3_START_ADDR 0x481AE000
+#define GPIO3_END_ADDR 0x481AEFFF
+#define GPIO3_SIZE (GPIO3_END_ADDR - GPIO3_START_ADDR)
+
 #define GPIO_OE 0x134
 #define GPIO_DATAIN 0x138
 #define GPIO_SETDATAOUT 0x194
@@ -24,4 +28,6 @@
 #define GPIO_07  (1<<7)
 #define GPIO_25  (1<<25)
 #define GPIO_60  (1<<28)
+#define GPIO_17  (1<<17)
+#define GPIO_20  (1<<20)
 #endif

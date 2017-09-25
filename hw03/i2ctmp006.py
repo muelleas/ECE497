@@ -9,7 +9,7 @@ address = 64
 try:
     print("running")
     while True:
-        temp = bus.read_byte_data(address, 1)
+        temp = bus.read_word_data(address, 0)
         print(temp)
         time.sleep(1)
 except KeyboardInterrupt:
