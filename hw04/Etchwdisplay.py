@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
-# File: EthchWButtons.py
+# File: EthchWdisplay.py
 # Author: Andrew Mueller
 #
-# This file takes input form 4 buttons on GP0 and the PAU button. With these inputs a game of Etch-a-sketch is played on a 8 by 8led matrix
-#The buttons on GP0 act as directionals and PAU is the reset.
+# This file takes input from two encoders and the PAU button. With these inputs a game of Etch-a-sketch is played on a 8 by 8led matrix
+#The encoders as directionals and PAU is the reset.
 
 import Adafruit_BBIO.GPIO as GPIO
 import time
@@ -50,11 +50,11 @@ def update():
     global yPos
     global xloc
     global yloc
-    e2 = encoder.get(2)
+    e2 = encoder.get(2)  #read encoders
     e3 = encoder.get(3)
     array[2*xPos] = array[2*xPos] | array[2*xPos+1] 
     array[2*xPos + 1] = 0x00
-    diffx = (e2-xloc)//4
+    diffx = (e2-xloc)//4   #encoders work in intervals of 4
     diffy = (e3-yloc)//4
     if diffx > 0:   #moves the currsor
         if xPos < size-1:
@@ -74,12 +74,11 @@ def update():
     array[2*xPos + 1] =   pow(2, yPos)  #place cursor
     printArray()
     
-GPIO.add_event_detect(resetButton, GPIO.FALLING, callback=reset)
+GPIO.add_event_detect(resetButton, GPIO.FALLING, callback=reset) #add the reset option
 
 try:
-    reset()
-    while True:
-        #if rcpy.get_state() == rcpy.RUNNING:
+    reset()  #intis the board
+    while True:  #continually runs the game
         update()
         time.sleep(.1)
 

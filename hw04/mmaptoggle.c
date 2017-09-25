@@ -1,7 +1,10 @@
 // From : http://stackoverflow.com/questions/13124271/driving-beaglebone-gpio-through-dev-mem
+// File mmaptoggle.c
+// Author: Andrew Mueller
 //
-// Be sure to set -O3 when compiling.
-// Modified by Mark A. Yoder  26-Sept-2013
+// This file takes two bvuttons on GPIO4 and two leds on GPIO1 and when the buttons are pressed the LEDs toggle on and off.
+
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <sys/mman.h>
@@ -27,11 +30,12 @@ void signal_handler(int sig)
 }
 
 int main(int argc, char *argv[]) {
+    //GPIO1 variables
     volatile void *gpio1_addr;
     volatile unsigned int *gpio1_oe_addr;
     volatile unsigned int *gpio1_setdataout_addr;
     volatile unsigned int *gpio1_cleardataout_addr;
-    
+    //GPIO3 variables
     volatile void *gpio3_addr;
     volatile unsigned int *gpio3_oe_addr;
     volatile unsigned int *gpio3_datain;
@@ -68,15 +72,15 @@ int main(int argc, char *argv[]) {
 
     // Set USR3 to be an output pin
     while(keepgoing) {
-	if(*gpio3_datain & GPIO_20) {
-		*gpio1_setdataout_addr = USR3;
+	if(*gpio3_datain & GPIO_20) {  // if gpio3_20 is pushed
+		*gpio1_setdataout_addr = USR3;  //turn on led
 	} else {
-		*gpio1_cleardataout_addr = USR3;
+		*gpio1_cleardataout_addr = USR3;  // turn off led
 	}
-	if(*gpio3_datain & GPIO_17) {
-		*gpio1_setdataout_addr = USR2;
+	if(*gpio3_datain & GPIO_17) {  // if gpio3_17 is pushed
+		*gpio1_setdataout_addr = USR2;  // turn on led
 	} else {
-		*gpio1_cleardataout_addr = USR2;
+		*gpio1_cleardataout_addr = USR2; //turn off led
 	}
     }
 

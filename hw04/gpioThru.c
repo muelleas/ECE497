@@ -62,14 +62,11 @@ int main(int argc, char *argv[]) {
 
     printf("Start copying GPIO_07 to USR3\n");
     while(keepgoing) {
-    	if(*gpio_datain & GPIO_25) {   //07
-            *gpio_setdataout_addr= USR3;
+    	if(*gpio_datain & GPIO_25) {   //if the button is pressed
+            *gpio_setdataout_addr= USR3;  //turn on the led
     	} else {
-            *gpio_cleardataout_addr = USR3;
+            *gpio_cleardataout_addr = USR3;  //turn off the led
 	}
-        //usleep(1);
-	//printf(*gpio_datain & GPIO_07);
-	//usleep(25000);
     }
 
     munmap((void *)gpio_addr, GPIO1_SIZE);
