@@ -37,7 +37,10 @@ GPIO.add_event_detect(alert1, GPIO.FALLING, callback=tempPrint)
 try:
     print("running")
     while True:
-        time.sleep(100)
+        time.sleep(5)
+        temp0 = bus.read_byte_data(address0, 0)
+        temp1 = bus.read_byte_data(address1, 0)
+        print("temp is %d and %d"%(temp0, temp1))
 except KeyboardInterrupt:
     print("cleanup")
     GPIO.cleanup()
