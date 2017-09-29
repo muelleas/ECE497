@@ -1,0 +1,7 @@
+1.	The browser and the bone use socket.io to send messages between each other. When thethe browser file such as matrixLED.js recives a message line a click on a light it will then enter in to a function, in this case LEDclick. It will then do somethings in that function and will also call socket.emit which will send some data to the bone. When the bone gets the message it will take the keyword and then map that to a function in its code and will then run those commands. 
+
+2.	When an LED is clicked in the browser the webside js file toggles the display data at the pixel. It then communicates with the bone side code which then writes that data to the display. While that is happening the webside will either add or remove a css class to the led clicked. This will change its color in the website.
+
+3.	The class .on handels the color of the LED on the website.
+
+4.	Most of the control of the LEDs will be done on the website side. When a LED is clicked on I will check to see which color it is be seeing is the LEDs are on. From there i will toggle the LEDs i nedd to to rotate the colors. From there I will then remove the previous css class for the color add the css class for the given color to the clicked LED. I would then send the data for the LEDs to the bone which will then write the data to the display.
