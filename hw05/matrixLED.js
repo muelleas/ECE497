@@ -23,30 +23,28 @@ $("#slider1").slider({min:0, max:15, slide: function(event, ui) {
 
 // Send one column when LED is clicked.
 function LEDclick(i, j) {
-    // alert(i+","+j+" clicked");
-    // socket.emit('i2c', i2cNum);
     // Toggle bit on display
     k = i*2+1;
-    if(disp[i*2]>>j&0x1 === 1) {
-	if(disp[i*2+1]>>j&0x1 ===1) {
+    if(disp[i*2]>>j&0x1 === 1) {   //if the green led is on
+	if(disp[i*2+1]>>j&0x1 ===1) {   //if the red led is on
 	    $('#id'+i+'_'+j).removeClass('yellow');
-	    disp[i*2] ^= 0x1<<j;
+	    disp[i*2] ^= 0x1<<j;    //toggle both lights
             disp[i*2+1] ^= 0x1<<j;
 	} else {
             $('#id'+i+'_'+j).removeClass('green');
             $('#id'+i+'_'+j).addClass('red');
-       	    disp[i*2] ^= 0x1<<j;
+       	    disp[i*2] ^= 0x1<<j;    //toggle both leds
 	    disp[i*2+1] ^= 0x1<<j;
 	}
-    } else if (disp[i*2+1]>>j&0x1 ===1) {
+    } else if (disp[i*2+1]>>j&0x1 ===1) {   //if the red led is on
         $('#id'+i+'_'+j).removeClass('red');
         $('#id'+i+'_'+j).addClass('yellow');
-	disp[i*2] ^= 0x1<<j;
+	disp[i*2] ^= 0x1<<j;   //toggle green led
     } else {
         $('#id'+i+'_'+j).addClass('green');
-	disp[i*2] ^= 0x1<<j;
+	disp[i*2] ^= 0x1<<j;   //toggle green led
     }
-    socket.emit('i2cset', {i2cNum: i2cNum, i: 2*i, disp: '0x'+disp[2*i].toString(16)});
+    socket.emit('i2cset', {i2cNum: i2cNum, i: 2*i, disp: '0x'+disp[2*i].toString(16)});    //write data to the bone
     socket.emit('i2cset', {i2cNum: i2cNum, i: 2*i+1, disp: '0x'+disp[2*i+1].toString(16)});
 }
 
