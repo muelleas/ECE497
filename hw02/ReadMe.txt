@@ -9,3 +9,7 @@ This program takes four inputs in the form of buttons plugged in on the GP0. Eac
 Etch-a-sketch
 this part of the homework is in the file EtchWButtons.js.
 This program takes the idea of the etch-a-sketch from the first homework and then adds buttons to act as control inputs. The buttons are plugged in to GP0. These buttons operate interrups that update the screen with the moved curser. The pause button acts as a clear button. The buttons are still debounced like the last part.
+
+# Comments from Prof. Yoder
+# Looks good. Which is easier to use Python or Javascript? 
+# Grade:  10/10
