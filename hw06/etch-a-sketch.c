@@ -1,3 +1,8 @@
+// File: etch-a-sketch.c
+// Edited by Andrew Mueller
+// This file shows an etch-a-sketch on the screen being controleed by encoders on port 1 and 3.
+// I edited this file so that a third encoder on port 2 which changes the size of the pixel being drawn
+
 /*
 To test that the Linux framebuffer is set up correctly, and that the device permissions
 are correct, use the program below which opens the frame buffer and draws a gradient-
@@ -114,14 +119,14 @@ int main()
 	    // center
             //*((unsigned short int*)(fbp + location)) = t;
 	    // lines
-	    int size = abs(rc_get_encoder_pos(2)/2) %32;
-	    for(int i =-size; i<=size; i++){
+	    int size = abs(rc_get_encoder_pos(2)/2) %32; //get the size of the square
+	    for(int i =-size; i<=size; i++){             //for all pixels in the square
 		for(int j=-size; j<=size; j++){
-		    int xtemp = (xold + i + vinfo.xres)%vinfo.xres;
+		    int xtemp = (xold + i + vinfo.xres)%vinfo.xres;	//get x and y location with wrap around:wq
 		    int ytemp = (yold + j + vinfo.yres)%vinfo.yres;
 		    location = (xtemp+vinfo.xoffset) * (vinfo.bits_per_pixel/8) +
-                       (ytemp+vinfo.yoffset) * finfo.line_length;
-		    *((unsigned short int*)(fbp + location)) = t;
+                       (ytemp+vinfo.yoffset) * finfo.line_length;   //set location
+		    *((unsigned short int*)(fbp + location)) = t;   //color pixel
 		}
 	    }
             

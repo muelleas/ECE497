@@ -1,5 +1,7 @@
 #!/bin/sh
-#turn the display to 90 degrees
+# file: turn90.sh
+# Author: Andrew Mueller
+# turn the display to 90 degrees
 # Connect the display before running this.
 
 sudo bash << EOF
