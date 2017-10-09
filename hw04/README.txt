@@ -7,3 +7,8 @@ This homework was intended to teach about memory mapping so I started with gpioT
 Rotary Encoders
 This part of the homework can be found in the file Etchwdisplay.py
 This program continues to build of of the previous homeworks. This time the buttons are replaced with two rotary encoders more simmilar to an actual etch-a-sketch. Then spinning the encoders the screen will move the draw pixel to match.
+
+# Comments from Prof. Yoder
+# Found your memory map file, but it was missing the .png so it was hard to read.
+# Looks good.
+# Grade:  9/10
